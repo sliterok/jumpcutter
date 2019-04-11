@@ -11,6 +11,7 @@ const telegram = new Telegram(token, {agent: null})
 const jumpCutter = new Telegraf(token, {agent: null})
 
 
+const ShouldReply = false;
 
 jumpCutter.command('start', ctx => {
 	ctx.reply('test')
@@ -42,7 +43,7 @@ jumpCutter.on('voice', async (ctx) => {
 					source: outputFile
 				},{
 					duration: time,
-					reply_to_message_id: ctx.message.message_id
+					reply_to_message_id: !ShouldReply || ctx.message.message_id
 				})
 				await exec(`rm -rf ./${voiceFolder}`)
 				res()
@@ -83,7 +84,7 @@ jumpCutter.on('voice', async (ctx) => {
 		source: outputFile
 	},{
 		duration: time,
-		reply_to_message_id: ctx.message.message_id
+		reply_to_message_id: !ShouldReply || ctx.message.message_id
 	})
 	await exec(`rm -rf ./${voiceFolder}`)
 })
