@@ -21,10 +21,15 @@ jumpCutter.on('voice', async (ctx) => {
 	const folder = file.file_id
 	const fileName = file.file_path.split('/').slice(-1);
 	
-	const voiceFolder = `voices/${folder}`
+	const parentFolder = 'voices'
+	const voiceFolder = `${parentFolder}/${folder}`
 	const inputFile = `${voiceFolder}/${fileName}`
 	const outputFile = `${voiceFolder}/resultVoice.oga`;
 	const tempFolder = `${voiceFolder}/TEMP`
+	
+	const parentFolderExists = await new Promise((res, rej) => fs.access(parentFolder, fs.constants.R_OK, err => err ? res(false) : res(true)))
+	if(!parentFolderExists)
+		await mkdir(parentFolder)
 	
 	const folderExists = await new Promise((res, rej) => fs.access(voiceFolder, fs.constants.R_OK, err => err ? res(false) : res(true)))
 	const fileExists = await new Promise((res, rej) => fs.access(outputFile, fs.constants.R_OK, err => err ? res(false) : res(true)))
@@ -51,7 +56,7 @@ jumpCutter.on('voice', async (ctx) => {
 			
 	
 	
-	await mkdir(voiceFolder, {recursive: true})
+	await mkdir(voiceFolder)
 	
 	const download = await fetch(`https://api.telegram.org/file/bot${token}/${file.file_path}`)
 	const fileStream = fs.createWriteStream(inputFile);
