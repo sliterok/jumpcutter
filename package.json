@@ -1,0 +1,23 @@
+{
+  "name": "jumpcutter",
+  "version": "1.0.0",
+  "description": "Automatically edits videos. Explanation here: https://www.youtube.com/watch?v=DQ8orIurGxw",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sliterok/jumpcutter.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sliterok/jumpcutter/issues"
+  },
+  "homepage": "https://github.com/sliterok/jumpcutter#readme",
+  "dependencies": {
+    "node-fetch": "^2.3.0",
+    "telegraf": "^3.28.0"
+  }
+}

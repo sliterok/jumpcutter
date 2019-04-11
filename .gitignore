@@ -93,3 +93,11 @@ ENV/
 *.iml
 out
 gen
+
+# Node.js stuff
+node_modules
+package-lock.json
+voices/*
+
+# Telegram auth
+token.txt
